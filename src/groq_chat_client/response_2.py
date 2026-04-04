@@ -33,3 +33,16 @@ print(filled_prompt)
 response = llm.invoke(filled_prompt)
 
 print(response.content)
+
+# COMMAND ----------
+
+# Now let us learn the outputparser
+
+from langchain_core.output_parsers import StrOutputParser
+
+parser = StrOutputParser()
+
+clean = parser.invoke(response)
+
+print(type(clean))
+print(clean)
