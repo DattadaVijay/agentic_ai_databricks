@@ -73,10 +73,3 @@ response = llm.invoke(message)
 
 print(response.content
 )
-
-
-
-
-
-
-
