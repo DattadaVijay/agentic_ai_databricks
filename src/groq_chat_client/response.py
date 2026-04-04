@@ -32,7 +32,7 @@ print(response.choices[0].message.content)
 # COMMAND ----------
 
 %pip install langchain langchain-groq
-dbutils.library.restart_python()
+dbutils.library.restartPython()
 
 # COMMAND ----------
 
