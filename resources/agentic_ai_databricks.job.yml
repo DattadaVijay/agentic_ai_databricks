@@ -7,5 +7,6 @@ resources:
       tasks:
         - task_key: notebook_task
           notebook_task:
-            notebook_path: ../src/groq_chat_client
+            notebook_path: ../src/groq_chat_client/response.py
             
+
