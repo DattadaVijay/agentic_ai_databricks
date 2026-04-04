@@ -5,13 +5,13 @@ resources:
       name: agentic_ai_databricks_job
 
       tasks:
-        - task_key: Basics of model calling
+        - task_key: Basics_of_model_calling
           notebook_task:
             notebook_path: ../src/groq_chat_client/response.py
 
-        - task_key: "Parametrising the prompts"
+        - task_key: Parametrising_the_prompts
           depends_on: 
-            - task_key: Basics of model calling
+            - task_key: Basics_of_model_calling
           notebook_task:
             notebook_path: "../src/groq_chat_client/response_2.py"
             base_parameters:
