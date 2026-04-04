@@ -15,12 +15,10 @@ os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
 client = Groq()
 
 response = client.chat.completions.create(
-    model = "llama-3.3-70b-versatile",
-    messages = [
-        {
-            {"role": "system", "content": "You are a helpful data engineering assistant."},
-            {"role": "user",   "content": "What is a Delta table in 2 sentences?"}
-        }
+    model="llama-3.3-70b-versatile",
+    messages=[
+        {"role": "system", "content": "You are a helpful data engineering assistant."},
+        {"role": "user",   "content": "What is a Delta table in 2 sentences?"}
     ]
 )
 # COMMAND ----------
