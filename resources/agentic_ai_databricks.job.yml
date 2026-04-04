@@ -1,0 +1,11 @@
+# The main job for agentic_ai_databricks.
+resources:
+  jobs:
+    agentic_ai_databricks_job:
+      name: agentic_ai_databricks_job
+
+      tasks:
+        - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../src/groq_chat_client
+            

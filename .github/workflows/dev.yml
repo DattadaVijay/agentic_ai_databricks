@@ -1,0 +1,39 @@
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+
+jobs:
+    deploy_dev:
+        runs-on: ubuntu-latest
+        env:
+            DATABRICKS_HOST: ${{secrets.DATABRICKS_HOST}}
+            DATABRICKS_TOKEN: ${{secrets.DATABRICKS_TOKEN}}
+
+        steps:
+
+            - name: checkout_repo
+              uses: actions/checkout@v4
+
+            - name: setup databricks cli
+              uses: databricks/setup-cli@v0.269.0
+
+            - name: install python
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.12"
+
+            - name: bundle validate
+              uses: databricks bundle validate
+
+            - name: bundle deploy
+              uses: databricks bundle deploy --target dev --auto-approve 
+
+
+
+
+    
+
+

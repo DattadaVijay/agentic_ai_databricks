@@ -1,0 +1,14 @@
+{# # The main pipeline for agentic_ai_databricks
+resources:
+  pipelines:
+    agentic_ai_databricks_pipeline:
+      name: agentic_ai_databricks_pipeline
+      catalog: workspace
+      schema: agentic_ai_databricks_${bundle.target}
+      serverless: true
+      libraries:
+        - notebook:
+            path: ../src/pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src #}
