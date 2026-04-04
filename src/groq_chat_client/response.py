@@ -9,7 +9,7 @@ from groq import Groq
 
 os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
     scope="agents_scope", 
-    key="groq_api_key"
+    key="grok_key"
 )
 
 client = Groq()
