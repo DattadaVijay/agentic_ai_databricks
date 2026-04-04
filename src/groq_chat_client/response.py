@@ -50,4 +50,33 @@ response = llm.invoke("What is a Delta table in 2 sentences?")
 # COMMAND ----------
 print(response.content)
 
+# COMMAND ----------
+# Now let us learn how we can pass both the system message and the input message
+
+import os
+from langchain_core.messages import  SystemMessage, HumanMessage
+from langchain_groq import ChatGroq
+
+os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
+    scope="agents_scope", 
+    key="grok_key"
+)
+
+llm = ChatGroq(model = "llama-3.3-70b-versatile")
+
+
+message = [
+    SystemMessage("You are a databricks and data engineering specialist who can teach very well"),
+    HumanMessage("Explain spark declarative pipeline vs dbt pipeline for databricks in short")
+]
+response = llm.invoke(message)
+
+print(response.content
+)
+
+
+
+
+
+
 
