@@ -32,7 +32,7 @@ jobs:
               run: databricks bundle deploy --target dev --auto-approve 
 
             - name: run the job and wait for completion
-              run: databricks bundle run agentic_ai_databricks_job --target dev --wait
+              run: databricks bundle run agentic_ai_databricks_job --target dev
 
 
 
