@@ -10,13 +10,13 @@ resources:
             notebook_path: ../src/groq_chat_client/response.py
 
         - task_key: Parametrising the prompts
-            notebook_task:
-              notebook_path: ../src/groq_chat_client/response_2.py
-              base_parameters:
-                platform: "databricks"
-                field: "Agentic AI"
-                topic: "langchain commands as cheatcode"
-                length: "5"
+          notebook_task:
+            notebook_path: ../src/groq_chat_client/response_2.py
+            base_parameters:
+              platform: "databricks"
+              field: "Agentic AI"
+              topic: "langchain commands as cheatcode"
+              length: "5"
 
 
 
