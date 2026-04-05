@@ -22,13 +22,16 @@ llm = ChatGroq(model="llama-3.3-70b-versatile")
 def get_job_id(job_name: str) -> str:
     """Gets the Databricks job ID for a given job name.
     Use this when you need to find the job ID of a Databricks job.
+    IMPORTANT: Pass the EXACT full job name including any brackets, 
+    prefixes or special characters. Do not modify the job name in any way.
+    For example '[dev dattada_vijay] my_job' should be passed exactly as is.
     Returns the job ID as a string, or an error message if not found."""
     
     df = spark.table("system.lakeflow.jobs")
-    matches = df.filter(df.name.contains(job_name)).select("name", "job_id").collect()
+    matches = df.filter(df.name == job_name).select("job_id").collect()
     
     if not matches:
-        return f"No job found containing '{job_name}'"
+        return f"No job found with name '{job_name}'"
     
     return str(matches[0][0])
 
