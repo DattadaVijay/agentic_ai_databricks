@@ -46,3 +46,39 @@ clean = parser.invoke(response)
 
 print(type(clean))
 print(clean)
+
+# COMMAND ----------
+
+# Now we are learning the piping in langchain we dont have to manually do everything rather if we pipe | its automatic
+
+from langchain_groq import ChatGroq
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+import os
+
+os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
+    scope="agents_scope",
+    key="grok_key"
+)
+
+llm    = ChatGroq(model="llama-3.3-70b-versatile")
+parser = StrOutputParser()
+
+prompt = ChatPromptTemplate([
+    ("system", "You are a {platform} {field} specialist and a teacher who uses tables and bullets to teach simply."),
+    ("user",   "Teach me {topic} in {length} lines.")
+])
+
+# Connect the pipe
+chain = prompt | llm | parser
+
+# Run it — hardcoded values, no widgets
+result = chain.invoke({
+    "platform": "Databricks",
+    "field":    "Data Engineering",
+    "topic":    "Delta tables",
+    "length":   "5"
+})
+
+print(type(result))
+print(result)
