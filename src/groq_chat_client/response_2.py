@@ -76,7 +76,7 @@ prompt = ChatPromptTemplate.from_messages([
 # Connect the pipe
 chain = prompt | llm | parser
 
-mlflow.set_experiment("/Users/your-email@domain.com/langchain-learning")  # your choice
+mlflow.set_experiment("/Users/dattada.vijay@gmail.com/langchain-learning")  # your choice
 mlflow.langchain.autolog()
 
 # Run it — hardcoded values, no widgets
