@@ -68,7 +68,7 @@ os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
 llm    = ChatGroq(model="llama-3.3-70b-versatile")
 parser = StrOutputParser()
 
-prompt = ChatPromptTemplate.from_messages([
+prompt = ChatPromptTemplate([
     ("system", "You are a {platform} {field} specialist and a teacher who uses tables and bullets to teach simply."),
     ("user",   "Teach me {topic} in {length} lines.")
 ])
@@ -76,7 +76,7 @@ prompt = ChatPromptTemplate.from_messages([
 # Connect the pipe
 chain = prompt | llm | parser
 
-mlflow.set_experiment("/Users/dattada.vijay@gmail.com/langchain-learning")  # your choice
+mlflow.set_experiment("/Users/dattada.vijay@gmail.com/langchain-learning")
 mlflow.langchain.autolog()
 
 # Run it — hardcoded values, no widgets

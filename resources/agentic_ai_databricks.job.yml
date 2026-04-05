@@ -20,5 +20,11 @@ resources:
               topic: "langchain commands as cheatcode"
               length: "5"
 
+          - task_key: adding_tools_to_langchain
+            depends_on: Basics_of_model_calling
+            max_retries: 0
+            notebook_task:
+              notebook_path: "../src/groq_chat_client/response_3.py"
+
 
 
