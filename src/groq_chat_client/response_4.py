@@ -6,8 +6,6 @@
 import os
 import mlflow
 from langchain_groq import ChatGroq
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.tools import tool
 from langgraph.prebuilt import create_react_agent
 
@@ -34,7 +32,8 @@ def calculate_percentage(value: float, percentage: float) -> float:
 # ── Agent ─────────────────────────────────────────────────────────
 agent = create_react_agent(
     model=llm,
-    tools=[add_numbers, calculate_percentage]
+    tools=[add_numbers, calculate_percentage],
+    state_modifier = "You are a data enginner working on databricks"
 )
 
 # ── MLflow ────────────────────────────────────────────────────────
