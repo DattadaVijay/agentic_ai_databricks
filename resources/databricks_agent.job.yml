@@ -1,20 +1,14 @@
 resources:
-    jobs:
-        databricks_agent_job:
-        name: databricks_agent_job
-
-        tags:
-            learning: agents
-            catalog: system
-
-        tasks:
-            - task_key: "get_job_id"
-              max_retries: 0
-              notebook_task:
-                notebook_path: ../src/groq_chat_client/data_steward/agent.py
-                base_parameters:
-                    job_name: "[dev dattada_vijay] agentic_ai_databricks_job"
-
-            
-
-    
+  jobs:
+    databricks_agent_job:
+      name: databricks_agent_job
+      tags:
+        learning: agents
+        catalog: system
+      tasks:
+        - task_key: "get_job_id"
+          max_retries: 0
+          notebook_task:
+            notebook_path: ../src/groq_chat_client/data_steward/agent.py
+            base_parameters:
+              job_name: "[dev dattada_vijay] agentic_ai_databricks_job"
