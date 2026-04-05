@@ -21,10 +21,19 @@ resources:
               length: "5"
 
         - task_key: adding_tools_to_langchain
-          depends_on: Basics_of_model_calling
+          depends_on:
+            - task_key: Parametrising_the_prompts
           max_retries: 0
           notebook_task:
             notebook_path: "../src/groq_chat_client/response_3.py"
+
+        - task_key: langragh
+          depends_on:
+            - task_key: adding_tools_to_langchain
+          max_retries: 0
+          notebook_task:
+            notebook_path: "../src/groq_chat_client/response_4.py"
+          
 
 
 
