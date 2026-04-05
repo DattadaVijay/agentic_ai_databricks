@@ -51,6 +51,9 @@ print(clean)
 
 # Now we are learning the piping in langchain we dont have to manually do everything rather if we pipe | its automatic
 
+%pip install -U langchain langchain-groq langchain-core
+dbutils.library.restartPython()
+# COMMAND ----------
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
