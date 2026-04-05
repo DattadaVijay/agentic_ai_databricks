@@ -58,6 +58,7 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import os
+import mlflow
 
 os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
     scope="agents_scope",
@@ -74,6 +75,9 @@ prompt = ChatPromptTemplate.from_messages([
 
 # Connect the pipe
 chain = prompt | llm | parser
+
+mlflow.set_experiment("/Users/your-email@domain.com/langchain-learning")  # your choice
+mlflow.langchain.autolog()
 
 # Run it — hardcoded values, no widgets
 result = chain.invoke({
