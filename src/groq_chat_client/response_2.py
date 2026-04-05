@@ -64,7 +64,7 @@ os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
 llm    = ChatGroq(model="llama-3.3-70b-versatile")
 parser = StrOutputParser()
 
-prompt = ChatPromptTemplate([
+prompt = ChatPromptTemplate.from_messages([
     ("system", "You are a {platform} {field} specialist and a teacher who uses tables and bullets to teach simply."),
     ("user",   "Teach me {topic} in {length} lines.")
 ])
