@@ -33,7 +33,7 @@ def get_job_id(job_name: str) -> str:
 agent = create_react_agent(
     model=llm,
     tools=[get_job_id],
-    state_modifier="You are a Databricks governance expert"
+    prompt="You are a Databricks governance expert"
 )
 
 job_name = dbutils.widgets.get("job_name")
