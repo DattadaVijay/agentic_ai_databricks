@@ -5,6 +5,7 @@
 
 # COMMAND ----------
 import os
+import json
 from langchain_groq import ChatGroq
 from langchain_core.tools import tool
 from langchain.agents import create_agent
@@ -54,14 +55,15 @@ def get_job_status(job_id: str) -> str:
 agent = create_agent(
     model=llm,
     tools=[get_job_id, get_job_status],
-    prompt="""You are a Databricks governance expert with access to job information.
+    system_prompt="""You are a Databricks governance expert with access to job information.
 You can look up job IDs and job run statuses.
 Always use the exact job name as provided by the user.
 When you find information, summarise it clearly.
 Remember previous answers in the conversation and refer to them when relevant."""
 )
 
-messages = dbutils.widgets.get("messages")
+raw = dbutils.widgets.get("messages")
+messages = json.loads(raw)
 
 response = agent.invoke({
     "messages": messages

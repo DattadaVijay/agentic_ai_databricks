@@ -52,4 +52,3 @@ response = agent.invoke({"messages": messages})
 # Print full ReAct loop
 for message in response["messages"]:
     print(f"{message.type.upper()}: {message.content}")
-    print()
