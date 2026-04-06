@@ -7,7 +7,7 @@
 import os
 from langchain_groq import ChatGroq
 from langchain_core.tools import tool
-from langgraph.prebuilt import create_react_agent
+from langchain.agents import create_agent
 
 
 os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
@@ -51,7 +51,7 @@ def get_job_status(job_id: str) -> str:
     return str(matches[0]["run_state"])
 
 
-agent = create_react_agent(
+agent = create_agent(
     model=llm,
     tools=[get_job_id, get_job_status],
     prompt="""You are a Databricks governance expert with access to job information.
@@ -63,6 +63,11 @@ Remember previous answers in the conversation and refer to them when relevant.""
 
 messages = dbutils.widgets.get("messages")
 
-print(messages)
+response = agent.invoke({
+    "messages": messages
+})
+
+print(response["messages"][-1].content)
+
 
 
