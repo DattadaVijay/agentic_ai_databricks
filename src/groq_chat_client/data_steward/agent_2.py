@@ -36,25 +36,22 @@ def get_job_id(job_name: str) -> str:
     return str(matches[0][0])
 
 @tool
-def get_job_status(job_id: str) -> str:
-    """Gets the latest run status of a Databricks job given its job ID.
-    Returns the status of the most recent run or an error if not found."""
-    df = spark.table("system.lakeflow.job_runs")
-    matches = (df
-        .filter(df.job_id == job_id)
-        .orderBy(df.start_time.desc())
-        .select("job_id", "run_state")
-        .limit(1)
-        .collect()
-    )
+def get_job_creator(job_id: str) -> str:
+    """Gets the creator username of a Databricks job given its job ID.
+    Use this when you need to find who created a job.
+    If only a job name is given, first use get_job_id to get the job ID,
+    then pass that job ID to this tool.
+    Returns the creator username or an error message if not found."""
+    df = spark.table("system.lakeflow.jobs")
+    matches = df.filter(df.job_id == job_id).select("creator_user_name").collect()
     if not matches:
-        return f"No runs found for job ID '{job_id}'"
-    return str(matches[0]["run_state"])
+        return f"No job found with job ID '{job_id}'"
+    return str(matches[0][0])
 
 
 agent = create_agent(
     model=llm,
-    tools=[get_job_id, get_job_status],
+    tools=[get_job_id, get_job_creator],
     system_prompt="""You are a Databricks governance expert with access to job information.
 You can look up job IDs and job run statuses.
 Always use the exact job name as provided by the user.

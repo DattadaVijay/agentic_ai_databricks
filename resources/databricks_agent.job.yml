@@ -6,13 +6,12 @@ resources:
         learning: agents
         catalog: system
       tasks:
-
         - task_key: "tool_test"
           for_each_task:
             inputs: |
               [
                 {"messages": [{"role": "user", "content": "What is the job ID of ${var.job_name}?"}]},
-                {"messages": [{"role": "user", "content": "What is the current status of run for job_id of ${var.job_id}?"}]}
+                {"messages": [{"role": "user", "content": "Who is the creator of job named ${var.job_name}?"}]}
               ]
             task:
               task_key: "run_agent_task"
