@@ -17,10 +17,11 @@ resources:
           depends_on:
             - task_key: "get_job_id"
           for_each_task:
-            inputs: '[
-              [{"role": "user", "content": "What is the job ID of ${var.job_name}?"}], 
-              [{"role": "user", "content": "What is the current status of run for job_id of ${var.job_id}?"}]
-            ]'
+            inputs: |
+              [
+                [{"role": "user", "content": "What is the job ID of ${var.job_name}?"}], 
+                [{"role": "user", "content": "What is the current status of run for job_id of ${var.job_id}?"}]
+              ]
             task:
               task_key: "run_agent_task"
               notebook_task:
