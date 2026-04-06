@@ -1,0 +1,6 @@
+variables:
+  job_name:
+    default: "[dev dattada_vijay] agentic_ai_databricks_job"
+
+  job_id:
+    default: "96407719029696"

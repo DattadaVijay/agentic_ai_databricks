@@ -11,4 +11,19 @@ resources:
           notebook_task:
             notebook_path: ../src/groq_chat_client/data_steward/agent.py
             base_parameters:
-              job_name: "[dev dattada_vijay] agentic_ai_databricks_job"
+              job_name: "${var.job_name}"
+              
+        - task_key: "tool_test"
+          depends_on:
+            - task_key: "get_job_id"
+          for_each_task:
+            inputs: '[
+              [{"role": "user", "content": "What is the job ID of ${var.job_name}?"}], 
+              [{"role": "user", "content": "What is the current status of run for job_id of ${var.job_id}?"}]
+            ]'
+            task:
+              task_key: "run_agent_task"
+              notebook_task:
+                notebook_path: ../src/groq_chat_client/data_steward/agent_2.py
+                base_parameters:
+                  messages: "{{input}}"
