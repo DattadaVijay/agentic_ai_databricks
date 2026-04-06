@@ -61,8 +61,6 @@ When you find information, summarise it clearly.
 Remember previous answers in the conversation and refer to them when relevant."""
 )
 
-job_name = dbutils.widgets.get("job_name")
-
 messages = dbutils.widgets.get("messages")
 
 print(messages)
