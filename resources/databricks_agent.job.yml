@@ -19,3 +19,8 @@ resources:
                 notebook_path: ../src/groq_chat_client/data_steward/agent_2.py
                 base_parameters:
                   messages: "{{input.messages}}"
+
+        - task_key: "loading_agent_as_model"
+          max_retries: 0
+          notebook_task:
+            notebook_path: ../src/groq_chat_client/data_steward/agent_3.py
