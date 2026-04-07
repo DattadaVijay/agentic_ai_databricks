@@ -1,5 +1,4 @@
-# Databricks notebook source
-
+# COMMAND ----------
 # MAGIC %pip install langchain langchain-groq langgraph
 # MAGIC dbutils.library.restartPython()
 
@@ -7,32 +6,32 @@
 import mlflow
 import pandas as pd
 
-mlflow.set_experiment("Users/dattada.vijay@gmail.com/databricks_governance_agent")
-
-test_input = pd.DataFrame({
-    "prompt": [
-        "What is the job ID of [dev dattada_vijay] agentic_ai_databricks_job?",
-        "Who created the job with ID 96407719029696?"
+input_example = pd.DataFrame({
+    "question": [
+        "What is the job ID of [dev dattada_vijay] agentic_ai_databricks_job?"
     ]
 })
 
-with mlflow.start_run(name = "databricks_governance_agent"):
-    mlflow.log_param("name", "databricks_governance_agent")
-    mlflow.log_param("endpoint", "ChatGroq")
-    mlflow.log_param("tools", "[get_job_id, get_job_creator]")
+mlflow.set_experiment("/Users/dattada.vijay@gmail.com/databricks_governance_agent")
+
+with mlflow.start_run(run_name="databricks_governance_agent"):
+
+    mlflow.log_param("model",    "llama-3.3-70b-versatile")
+    mlflow.log_param("endpoint", "groq")
+    mlflow.log_param("tools",    "get_job_id, get_job_creator")
 
     mlflow.pyfunc.log_model(
-        name = "databricks_governance_agent",
-        python_model = "agent3.py",
+        name="databricks_governance_agent",
+        python_model="agent3.py",
         pip_requirements=[
             "langchain",
-            "langgraph",
-            "langchain-groq"
+            "langchain-groq",
+            "langgraph"
         ],
-        input_example = test_input
+        input_example=input_example
     )
 
-run_id = mlflow.active_run().info.run_id
-print(f"✅ Model logged")
-print(f"Run ID:    {run_id}")
-print(f"Model URI: runs:/{run_id}/databricks_governance_agent")
+    run_id = mlflow.active_run().info.run_id
+    print(f"✅ Model logged")
+    print(f"Run ID:    {run_id}")
+    print(f"Model URI: runs:/{run_id}/databricks_governance_agent")
