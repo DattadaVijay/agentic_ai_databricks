@@ -22,7 +22,7 @@ with mlflow.start_run(run_name="databricks_governance_agent"):
 
     mlflow.pyfunc.log_model(
         name="databricks_governance_agent",
-        python_model="agent3.py",
+        python_model="/Workspace/Users/dattada.vijay@gmail.com/.bundle/agentic_ai_databricks/dev/files/src/groq_chat_client/data_steward/agent_3.py",
         pip_requirements=[
             "langchain",
             "langchain-groq",
