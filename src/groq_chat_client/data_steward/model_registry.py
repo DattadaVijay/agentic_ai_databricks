@@ -7,5 +7,7 @@ registered = mlflow.register_model(
     name="databricks-governance-agent"
 )
 
+# COMMAND ----------
+
 print(f"Name:    {registered.name}")
 print(f"Version: {registered.version}")
