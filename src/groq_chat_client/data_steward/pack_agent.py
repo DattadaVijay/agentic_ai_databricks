@@ -5,6 +5,21 @@
 # COMMAND ----------
 import mlflow
 import pandas as pd
+from mlflow.types.schema import Schema, ColSpec
+from mlflow.models.signature import ModelSignature
+
+input_schema = Schema([
+    ColSpec("string", "questions")
+])
+
+output_schema = Schema([
+    ColSpec("string")
+])
+
+signature = ModelSignature(
+    inputs = input_schema,
+    outputs = output_schema
+)
 
 input_example = pd.DataFrame({
     "questions": [
@@ -28,7 +43,8 @@ with mlflow.start_run(run_name="databricks_governance_agent"):
             "langchain-groq",
             "langgraph"
         ],
-        input_example=input_example
+        input_example=input_example,
+        signature = signature
     )
 
     run_id = mlflow.active_run().info.run_id
