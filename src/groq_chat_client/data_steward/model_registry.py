@@ -1,5 +1,11 @@
 # Databricks notebook source
 import mlflow
+import os
+
+os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
+    scope="agents_scope",
+    key="grok_key"
+)
 
 run_id = dbutils.widgets.get("run_id")
 registered = mlflow.register_model(

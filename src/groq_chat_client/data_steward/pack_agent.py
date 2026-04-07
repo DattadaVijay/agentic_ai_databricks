@@ -4,9 +4,15 @@
 
 # COMMAND ----------
 import mlflow
+import os
 import pandas as pd
 from mlflow.types.schema import Schema, ColSpec
 from mlflow.models.signature import ModelSignature
+
+os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
+    scope="agents_scope",
+    key="grok_key"
+)
 
 input_schema = Schema([
     ColSpec("string", "questions")

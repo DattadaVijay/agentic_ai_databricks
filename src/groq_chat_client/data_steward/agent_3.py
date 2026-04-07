@@ -15,11 +15,8 @@ class DataGovernanceAgent(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context):
 
-        os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
-        scope="agents_scope",
-        key="grok_key")
-
-        llm = ChatGroq(model = "llama-3.3-70b-versatile")
+        llm = ChatGroq(model = "llama-3.3-70b-versatile",
+                       api_key=os.environ.get("GROQ_API_KEY"))
 
         @tool
         def get_job_id(job_name: str) -> str:
