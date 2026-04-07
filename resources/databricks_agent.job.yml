@@ -22,5 +22,14 @@ resources:
 
         - task_key: "loading_agent_as_model"
           max_retries: 0
+          depends_on: 
+            - task_key: run_agent_task
           notebook_task:
             notebook_path: ../src/groq_chat_client/data_steward/agent_3.py
+
+        - task_key: "logging_model_mlflow"
+          max_retries: 0
+          depends_on: 
+            - task_key: loading_agent_as_model
+          notebook_task:
+            notebook_path: ../src/groq_chat_client/data_steward/pack_agent.py

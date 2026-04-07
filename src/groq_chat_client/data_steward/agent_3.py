@@ -11,17 +11,15 @@ import os
 import mlflow
 import pandas as pd
 
-class databricksGovernanceAgent(mlflow.pyfunc.PythonModel):
-    def load_context(self, context): # context is nothing but a set of files to load alongside the model. So here we can say none as i dont have to load any exta files.
+class DataGovernanceAgent(mlflow.pyfunc.PythonModel):
+
+    def load_context(self, context):
 
         os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
-            scope="agents_scope",
-            key="grok_key"
-        )
+        scope="agents_scope",
+        key="grok_key")
 
-        llm = ChatGroq(model="llama-3.3-70b-versatile")
-
-        # COMMAND ----------
+        llm = ChatGroq(model = "llama-3.3-70b-versatile")
 
         @tool
         def get_job_id(job_name: str) -> str:
@@ -53,33 +51,28 @@ class databricksGovernanceAgent(mlflow.pyfunc.PythonModel):
                 return f"No job found with job ID '{job_id}'"
             return str(matches[0][0])
         
-        agent = create_agent(model = llm, tools = [get_job_id, get_job_creator], system_prompt = "You are a Databricks expert chain the tools appropriately if you dont have input directly for a tool for example if asked who is creator of job with a name first use get_job_id tool to get job id and then use the get_job_creator to find creator.")
+        self.agent = create_agent(
+            model = llm,
+            tools = [get_job_id, get_job_creator],
+            system_prompt="""You are a Databricks governance expert with access to job information. You can look up job IDs and job run statuses. Always use the exact job name as provided by the user. When you find information, summarise it clearly. Remember previous answers in the conversation and refer to them when relevant."""
+        )
 
     def predict(self, context, model_input):
-        results = []
-        for question in model_input["prompt"]:
-            response = self.agent.invoke([{
-                "messages": [{"role": "user", "content": question}]
-            }])
-            results.append(response["messages"][-1].content)
-        return results
+        result = []
+        for question in model_input["questions"]:
+            message = [{"role": "user", "content": question}]
+            response = self.agent.invoke({
+                "messages": message
+            })
+            result.append(response["messages"][-1].content)
+
+mlflow.models.set_model(DataGovernanceAgent())
+        
 
 
-
-# COMMAND ----------
-
-agent_model = databricksGovernanceAgent()
-agent_model.load_context(None)
-
-test_input = pd.DataFrame({
-    "prompt": [
-        "What is the job ID of [dev dattada_vijay] agentic_ai_databricks_job?",
-        "Who created the job with ID 96407719029696?"
-    ]
-})
-
-results = agent_model.predict(None, test_input)
-for q, a in zip(test_input["question"], results):
-    print(f"Q: {q}")
-    print(f"A: {a}")
-    print()
+# test_input = pd.DataFrame({
+#     "prompt": [
+#         "What is the job ID of [dev dattada_vijay] agentic_ai_databricks_job?",
+#         "Who created the job with ID 96407719029696?"
+#     ]
+# })
