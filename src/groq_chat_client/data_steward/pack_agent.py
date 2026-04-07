@@ -35,3 +35,6 @@ with mlflow.start_run(run_name="databricks_governance_agent"):
     print(f"✅ Model logged")
     print(f"Run ID:    {run_id}")
     print(f"Model URI: runs:/{run_id}/databricks_governance_agent")
+
+
+dbutils.jobs.taskValues.set(key = "run_id", value = run_id)
