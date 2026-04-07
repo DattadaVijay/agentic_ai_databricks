@@ -35,4 +35,4 @@ with mlflow.start_run(name = "databricks_governance_agent"):
 run_id = mlflow.active_run().info.run_id
 print(f"✅ Model logged")
 print(f"Run ID:    {run_id}")
-print(f"Model URI: runs:/{run_id}/job_lookup_agent")
+print(f"Model URI: runs:/{run_id}/databricks_governance_agent")
