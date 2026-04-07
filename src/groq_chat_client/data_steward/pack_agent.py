@@ -7,7 +7,7 @@ import mlflow
 import pandas as pd
 
 input_example = pd.DataFrame({
-    "question": [
+    "questions": [
         "What is the job ID of [dev dattada_vijay] agentic_ai_databricks_job?"
     ]
 })
