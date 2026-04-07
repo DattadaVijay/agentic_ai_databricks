@@ -41,5 +41,5 @@ resources:
           notebook_task:
             notebook_path: ../src/groq_chat_client/data_steward/model_registry.py
             base_parameters: 
-                run_id: {{tasks.logging_model_mlflow.values.run_id}}
+                run_id: "{{tasks.logging_model_mlflow.values.run_id}}"
 
