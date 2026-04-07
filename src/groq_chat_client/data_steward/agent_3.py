@@ -11,13 +11,13 @@ import os
 import mlflow
 import pandas as pd
 
-os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
-scope="agents_scope",
-key="grok_key")
-
 class DataGovernanceAgent(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context):
+
+        os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
+        scope="agents_scope",
+        key="grok_key")
 
         llm = ChatGroq(model = "llama-3.3-70b-versatile")
 
