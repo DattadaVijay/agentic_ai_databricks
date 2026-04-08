@@ -62,6 +62,7 @@ class DataGovernanceAgent(mlflow.pyfunc.PythonModel):
                 "messages": message
             })
             result.append(response["messages"][-1].content)
+        return result
 
 mlflow.models.set_model(DataGovernanceAgent())
         
