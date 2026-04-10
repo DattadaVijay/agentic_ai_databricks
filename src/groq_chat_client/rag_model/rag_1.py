@@ -1,7 +1,7 @@
 # Databricks notebook source
 # DBTITLE 1, Session Scoped Installs
 
-# MAGIC %pip install langchain langchain-community sentence-transformers langchain-text-splitters chromadb
+# MAGIC %pip install langchain langchain-community sentence-transformers langchain-text-splitters chromadb --quiet
 
 # COMMAND ----------
 
@@ -9,7 +9,7 @@
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
-from langchain.text_splitters import RecursiveCharecterTextSplitter
+from langchain_text_splitters import RecursiveCharecterTextSplitter
 
 Docs = ["PII columns including name, email, phone number and national ID must be masked using Databricks column masking functions. This is required under GDPR Article 25.",
     "Table freshness SLA requires all operational tables to be updated before 08:30 every day. Any table not updated by this time is considered a VIOLATION.",
