@@ -1,7 +1,7 @@
 # Databricks notebook source
 # DBTITLE 1, Session Scoped Installs
 
-# MAGIC %pip install langchain langchain-community sentance-transformers langchain-text-splitters chromadb
+# MAGIC %pip install langchain langchain-community sentence-transformers langchain-text-splitters chromadb
 
 # COMMAND ----------
 
