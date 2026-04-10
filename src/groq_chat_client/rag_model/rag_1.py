@@ -7,8 +7,8 @@
 
 # DBTITLE 1, Understanding how embeddings and vectordb work
 
-from langchain_cumminity.embeddings import HuggingFaceEmbeddings
-from langchain_cumminity.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 from langchain.text_splitters import RecursiveCharecterTextSplitter
 
 Docs = ["PII columns including name, email, phone number and national ID must be masked using Databricks column masking functions. This is required under GDPR Article 25.",
