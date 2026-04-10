@@ -1,0 +1,17 @@
+resources:
+    jobs:
+        rag_agentic_job:
+            name: "rag_agentic_job"
+
+            tags: 
+                learning: RAG
+                catalog: system
+
+            
+            tasks:
+                - task_key: Basics
+                  max_retries: 0
+                  notebook_task:
+                    notebook_path: ../src/groq_chat_client/rag_model/rag_1.py
+
+                    
