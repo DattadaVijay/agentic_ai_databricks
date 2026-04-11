@@ -29,7 +29,7 @@ resources:
                     notebook_path: ../src/groq_chat_client/rag_model/pinecone.py
 
                 - task_key: rag_as_agent
-                  max_retries:0
+                  max_retries: 0
                   depends_on:
                     - task_key: pinecone
                   notebook_task:
