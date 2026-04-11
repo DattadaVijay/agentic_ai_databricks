@@ -4,10 +4,3 @@ variables:
 
   job_id:
     default: "96407719029696"
-
-  doc_file_path:
-    description: "Path to the documents"
-
-  chroma_persist_location:
-    description: "location to persist the vector embeddings"
-    

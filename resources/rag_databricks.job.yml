@@ -7,10 +7,6 @@ resources:
                 learning: RAG
                 catalog: system
 
-            parameters:
-                - name: "doc_file_path"
-                  default: "${var.doc_file_path}"
-
             
             tasks:
                 - task_key: chroma_db
