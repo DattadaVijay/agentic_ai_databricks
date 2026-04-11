@@ -6,6 +6,9 @@ resources:
             tags: 
                 learning: RAG
                 catalog: system
+                
+            parameters:
+                - doc_location_path: {var.doc_file_path}
 
             
             tasks:
@@ -35,4 +38,7 @@ resources:
                   notebook_task:
                     notebook_path: ../src/groq_chat_client/rag_model/rag_agent.py
 
+
+
+              
                     

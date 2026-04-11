@@ -4,3 +4,6 @@ variables:
 
   job_id:
     default: "96407719029696"
+
+  doc_file_path:
+    description: "Path to the documents"

@@ -11,6 +11,7 @@ jobs:
         env:
             DATABRICKS_HOST: ${{secrets.DATABRICKS_HOST}}
             DATABRICKS_TOKEN: ${{secrets.DATABRICKS_TOKEN}}
+            doc_file_path: ${{secrets.DOC_FILE_PATH}}
 
         steps:
 
