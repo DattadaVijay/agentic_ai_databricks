@@ -12,6 +12,7 @@ os.environ["PINECONE_API_KEY"] = dbutils.secrets.get(
     key="pinecone_key"
 )
 
+
 pc = Pinecone()
 
 print("Existing indexes:")
@@ -86,7 +87,7 @@ os.environ["GROQ_API_KEY"] = dbutils.secrets.get(
 
 #splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
 
-#loader = PyPDFLoader("/Workspace/Users/dattada.vijay@gmail.com/RAG/resume.pdf")
+#loader = PyPDFLoader("")
 
 #doc = loader.load()
 

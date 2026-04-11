@@ -38,11 +38,11 @@ class rag_agent(mlflow.pyfunc.PythonModel):
         )
 
 
-        loader = PyPDFLoader("/Workspace/Users/dattada.vijay@gmail.com/RAG/resume.pdf")
+        # loader = PyPDFLoader("")
 
-        docs = loader.load()
-        splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-        chunks = splitter.split_documents(docs)
+        # docs = loader.load()
+        # splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        # chunks = splitter.split_documents(docs)
         embeddings = HuggingFaceBgeEmbeddings(model_name="BAAI/bge-large-en")
         llm = ChatGroq(model="llama-3.3-70b-versatile")
 

@@ -9,7 +9,7 @@ resources:
 
             parameters:
                 - name: "doc_location_path"
-                  default: {var.doc_file_path}
+                  default: "${var.doc_file_path}"
 
             
             tasks:
