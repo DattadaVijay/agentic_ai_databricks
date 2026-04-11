@@ -21,4 +21,11 @@ resources:
                   notebook_task:
                     notebook_path: ../src/groq_chat_client/rag_model/FAISS.py
 
+                - task_key: pinecone
+                  max_retries: 0
+                  depends_on:
+                    - task_key: faiss
+                  notebook_task:
+                    notebook_path: ../src/groq_chat_client/rag_model/pinecone.py
+
                     
