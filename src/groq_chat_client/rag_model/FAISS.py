@@ -10,7 +10,6 @@ import warnings
 warnings.filterwarnings("ignore")
 logging.getLogger("sentence_transformers").setLevel(logging.ERROR)
 logging.getLogger("transformers").setLevel(logging.ERROR)
-doc_path = dbutils.widgets.get("doc_file_path")
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -45,7 +44,7 @@ llm = ChatGroq(model = "llama-3.3-70b-versatile")
 
 # COMMAND ----------
 
-loader = PyPDFLoader(doc_path)
+loader = PyPDFLoader("/Workspace/Users/dattada.vijay@gmail.com/RAG/resume.pdf")
 pages = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)

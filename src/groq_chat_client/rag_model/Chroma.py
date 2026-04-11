@@ -33,8 +33,6 @@ logging.getLogger("huggingface_hub").setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 os.environ["TOKENIZERS_PARALLELISM"] = "false" 
 
-doc_path = dbutils.widgets.get("doc_file_path")
-
 embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 llm = ChatGroq(model = "llama-3.3-70b-versatile")
 
@@ -45,7 +43,7 @@ splitter = RecursiveCharacterTextSplitter(
     chunk_overlap=100,
 )
 
-loader = PyPDFLoader(doc_path)
+loader = PyPDFLoader("/Workspace/Users/dattada.vijay@gmail.com/RAG/resume.pdf")
 pages = loader.load()
 
 print(f"\nPage 1 content (first 300 chars):")
