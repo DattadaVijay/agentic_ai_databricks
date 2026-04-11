@@ -1,29 +1,40 @@
-env:
-  DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+name: Databricks CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy_dev:
     runs-on: ubuntu-latest
 
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-      - uses: databricks/setup-cli@v0.269.0
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@v0.269.0
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: bundle validate
+      - name: Validate bundle
         run: databricks bundle validate
 
-      - name: bundle deploy
+      - name: Deploy bundle
         run: |
           databricks bundle deploy \
             --target dev \
             --var="doc_file_path=${{ secrets.DOC_FILE_PATH }}" \
             --auto-approve
 
-      - name: run job
+      - name: Run job
         run: databricks bundle run rag_agentic_job --target dev
