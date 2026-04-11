@@ -37,8 +37,7 @@ print(index.describe())
 
 # COMMAND ----------
 
-loader = PyPDFLoader(
-    "/Volumes/digital_twin_dev/airport_ops/raw_governance_files/cavallo_governance_policies.pdf"
+loader = PyPDFLoader(""
 )
 pages  = loader.load()
 splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
