@@ -13,6 +13,7 @@ jobs:
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      BUNDLE_VAR_doc_file_path: ${{ secrets.DOC_FILE_PATH }}
 
     steps:
       - name: Checkout repo
@@ -27,14 +28,10 @@ jobs:
           python-version: "3.12"
 
       - name: Validate bundle
-        run: databricks bundle validate
+        run: databricks bundle validate --target dev
 
       - name: Deploy bundle
-        run: |
-          databricks bundle deploy \
-            --target dev \
-            --var="doc_file_path=${{ secrets.DOC_FILE_PATH }}" \
-            --auto-approve
+        run: databricks bundle deploy --target dev --auto-approve
 
       - name: Run job
         run: databricks bundle run rag_agentic_job --target dev
