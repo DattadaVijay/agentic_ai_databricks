@@ -8,7 +8,7 @@ resources:
                 catalog: system
 
             parameters:
-                - name: "doc_location_path"
+                - name: "doc_file_path"
                   default: "${var.doc_file_path}"
 
             
