@@ -26,19 +26,20 @@ for index in pc.list_indexes():
 # COMMAND ----------
 
 INDEX_NAME = "candidate-profiles"
-for index in pc.list_indexes():
-    if index.name != INDEX_NAME:
-        pc.create_index(
-            name=INDEX_NAME,
-            dimension=384,
-            metric="cosine",
-            spec=ServerlessSpec(
-                cloud="aws",
-                region="us-east-1"
-            )
+existing_index_names = [index.name for index in pc.list_indexes()]
+
+if INDEX_NAME not in existing_index_names:
+    pc.create_index(
+        name=INDEX_NAME,
+        dimension=384,
+        metric="cosine",
+        spec=ServerlessSpec(
+            cloud="aws",
+            region="us-east-1"
         )
-    else:
-        print(f"Skipping index creation for {index.name}")
+    )
+else:
+    print(f"Index {INDEX_NAME} already exists, skipping creation")
 
 
 
