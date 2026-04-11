@@ -9,9 +9,16 @@ resources:
 
             
             tasks:
-                - task_key: Basics
+                - task_key: chroma_db
                   max_retries: 0
                   notebook_task:
-                    notebook_path: ../src/groq_chat_client/rag_model/rag_1.py
+                    notebook_path: ../src/groq_chat_client/rag_model/Chroma.py
+
+                - task_key: faiss
+                  max_retries: 0
+                  depends_on:
+                    - task_key: chroma_db
+                  notebook_task:
+                    notebook_path: ../src/groq_chat_client/rag_model/FAISS.py
 
                     
