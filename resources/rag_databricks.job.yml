@@ -6,9 +6,10 @@ resources:
             tags: 
                 learning: RAG
                 catalog: system
-                
+
             parameters:
-                - doc_location_path: {var.doc_file_path}
+                - name: "doc_location_path"
+                  default: {var.doc_file_path}
 
             
             tasks:
