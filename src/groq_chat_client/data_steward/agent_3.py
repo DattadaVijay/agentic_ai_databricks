@@ -1,5 +1,9 @@
 # Databricks notebook source
-# MAGIC %pip install langchain langchain-groq langgraph
+# MAGIC %pip install \
+# MAGIC     "langchain==0.3.7" \
+# MAGIC     "langchain-core==0.3.15" \
+# MAGIC     "langchain-groq==0.2.1" \
+# MAGIC     "langgraph==0.2.45"
 # MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
@@ -14,6 +18,7 @@ import pandas as pd
 class DataGovernanceAgent(mlflow.pyfunc.PythonModel):
 
     def load_context(self, context):
+
 
         llm = ChatGroq(model = "llama-3.3-70b-versatile",
                        api_key=os.environ.get("GROQ_API_KEY"))
